@@ -18,6 +18,12 @@
 .env.test.local
 .env.production.local
 
+# backend
+/backend/local_settings.py
+/backend/__pycache__
+API_Key.txt
+
+
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
