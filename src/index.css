@@ -11,3 +11,66 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+#title_div{
+  text-align: center;
+  margin: auto;
+}
+
+#title{
+  position: absolute;
+  text-align: center;
+  left: 50%;
+  width: 50%;
+  transform: translate(-50%, -50%);
+}
+#login_div{
+  margin-left: auto;
+  margin-right: 0;
+  padding-bottom: 5%;
+}
+
+#login_button_div{
+  text-align: center;
+}
+
+#header_row{
+  background-color: dimgray;
+  margin-right: 0;
+  margin-left: 0;
+}
+
+#card_row{
+  width: 80%;
+  text-align: center;
+  margin: auto;
+}
+#card_col{
+  text-align: center;
+  margin-top: 50px;
+  margin-left: auto;
+  margin-right: auto;
+
+}
+#user_card_img{
+  width: max-content;
+  height: 5vw;
+  min-height: 100px;
+  min-width: 100px;
+  margin: auto;
+  padding-top: 3.5%;
+}
+#auth_container{
+  width: 20%;
+  margin:auto;
+}
+#not_logged_in_div{
+  margin: auto;
+  text-align: center;
+  padding-top: 20%;
+}
+.card-img-top {
+  width: 100%;
+  height: 15vw;
+  object-fit: cover;
+}
