@@ -21,6 +21,7 @@
 # backend
 /backend/local_settings.py
 /backend/__pycache__
+/backend/testing.py
 API_Key.txt
 
 
