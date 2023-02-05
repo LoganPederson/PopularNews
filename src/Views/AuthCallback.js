@@ -23,7 +23,7 @@ function AuthCallback() {
                 let res = await axios.get(targetURI);
                 let arr = res.data;
                 setCategory(arr[0][5])
-                console.log('Users saved category prefernce is: '+arr[0][5])
+                console.log('Users saved category preference is: '+arr[0][5])
                 return (arr)
                 
             } catch(e) {

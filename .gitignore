@@ -24,6 +24,8 @@
 /backend/testing.py
 API_Key.txt
 
+# frontend
+/src/Components/local_settings.js
 
 npm-debug.log*
 yarn-debug.log*

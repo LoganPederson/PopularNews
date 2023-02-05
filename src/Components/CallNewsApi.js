@@ -2,10 +2,12 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import ShowNews from './ShowNews';
 import { useAuth0 } from '@auth0/auth0-react'
+import apiKey from local_settings.js
+
 
 // Create axios instance with default URL for API request
 const client = axios.create({
-    baseURL: "https://newsapi.org/v2/top-headlines?country=us&apiKey=f3a6d079c52340e9a9af43b611c3a2ce" 
+    baseURL: `https://newsapi.org/v2/top-headlines?country=us&apiKey=${apiKey}` 
 });
 
 const CallNewsApi = () => {
@@ -49,10 +51,10 @@ const CallNewsApi = () => {
       if(category){
           // API endpoint based on user's preferred category
           if (category === 'Any'){
-            var targetURI = `https://newsapi.org/v2/top-headlines?country=us&apiKey=f3a6d079c52340e9a9af43b611c3a2ce`
+            var targetURI = `https://newsapi.org/v2/top-headlines?country=us&apiKey=${apiKey}`
           }
           else{
-            var targetURI = `https://newsapi.org/v2/top-headlines?country=us&apiKey=f3a6d079c52340e9a9af43b611c3a2ce&category=${category}`
+            var targetURI = `https://newsapi.org/v2/top-headlines?country=us&apiKey=${apiKey}&category=${category}`
           }
           axios
               .get(targetURI)
