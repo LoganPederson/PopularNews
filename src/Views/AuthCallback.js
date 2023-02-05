@@ -19,7 +19,7 @@ function AuthCallback() {
     useEffect(async () =>{
         if(!isLoading && isAuthenticated){
             try{
-                let targetURI = `http://localhost:8000/user{}?email=${user.email}`
+                let targetURI = `http://localhost:8000/api/user{}?email=${user.email}`
                 let res = await axios.get(targetURI);
                 let arr = res.data;
                 setCategory(arr[0][5])
@@ -41,7 +41,7 @@ function AuthCallback() {
 
     const handleClick = async () => {
         try{
-            let targetURI = `http://localhost:8000/user_category{}?email=${user.email}&category=${dropdown_selection}`
+            let targetURI = `http://localhost:8000/api/user_category{}?email=${user.email}&category=${dropdown_selection}`
             let res = await axios.post(targetURI)
             let arr = res.data;
             return (arr)

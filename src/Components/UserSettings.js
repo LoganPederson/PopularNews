@@ -22,7 +22,7 @@ const UserSettings = () => {
     // return sql querry results ie: [null,null,null,{email},null,null,{category}]
     const fetchTable=async (email) =>{
         try{
-            let targetURI = `http://localhost:8000/user{}?email=${email}`
+            let targetURI = `http://localhost:8000/api/user{}?email=${email}`
             let res = await axios.get(targetURI);
             let arr = res.data;
             setData(JSON.stringify(arr));
@@ -39,7 +39,7 @@ const UserSettings = () => {
     // User was not found in users table, thus we add them 
     const addUser = async (email) => {
         try{
-            let targetURI = `http://localhost:8000/add_user{}?email=${email}`
+            let targetURI = `http://localhost:8000/api/add_user{}?email=${email}`
             let res = await axios.post(targetURI);
             let arr = res.data;
             return (arr)

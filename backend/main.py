@@ -28,7 +28,7 @@ async def read_root():
 
     return cur.fetchall()
 
-@app.get("/user{}")
+@app.get("/api/user{}")
 async def read_users_table(email:str):
     cur.execute(f"""
     SELECT * FROM users
@@ -37,7 +37,7 @@ async def read_users_table(email:str):
     """)
     return cur.fetchall()
 
-@app.post("/add_user{}")
+@app.post("/api/add_user{}")
 async def add_user(email:str):
     cur.execute(f"""
         INSERT INTO users (email, category)
@@ -46,7 +46,7 @@ async def add_user(email:str):
     conn.commit()
     return
 
-@app.post("/user_category{}")
+@app.post("/api/user_category{}")
 async def set_category(email:str, category:str):
     cur.execute(f"""
         UPDATE users

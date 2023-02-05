@@ -27,7 +27,7 @@ const CallNewsApi = () => {
       if(isAuthenticated){
         try {
             // API endpoint for user data based on email
-            let targetURI = `http://localhost:8000/user{}?email=${user.email}`
+            let targetURI = `http://localhost:8000/api/user{}?email=${user.email}`
             let res = await axios.get(targetURI)
             let arr = res.data;
             console.log(arr+' arr')
