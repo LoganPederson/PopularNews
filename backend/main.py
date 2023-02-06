@@ -48,13 +48,24 @@ async def add_user(email:str):
 
 @app.post("/api/user_category{}")
 async def set_category(email:str, category:str):
+    category_lower = category.lower()
     cur.execute(f"""
         UPDATE users
         SET
-            category = '{category}'
+            category = '{category_lower}'
         WHERE
             email = '{email}';
     """)
     conn.commit()
     return
+    
+@app.get("/api/get_articles{}")
+async def get_articles(category:str):
+    category_lower = category.lower()
 
+    cur.execute(f"""
+        SELECT * FROM articles
+        WHERE
+            category = '{category_lower}';
+        """)
+    return cur.fetchall()

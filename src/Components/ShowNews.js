@@ -10,14 +10,14 @@ const ShowNews = ({ data, number }) => {
     // Card component from React Bootstrap to display the article
     <Card className="mb-3" style={{ color: "#000" }}>
       {/* Display the article's image */}
-      <Card.Img src={data ? data.articles[number].urlToImage : null} />
+      <Card.Img src={data ? data[number][7] : null} />
       <Card.Body>
         {/* Display the article's title */}
-        <Card.Title>{data ? data.articles[number].title : null}</Card.Title>
+        <Card.Title>{data ? data[number][5] : null}</Card.Title>
         {/* Display the article's description */}
-        <Card.Text>{data ? data.articles[number].description : null}</Card.Text>
+        <Card.Text>{data ? data[number][3] : null}</Card.Text>
         {/* Link to the full article */}
-        <Link to={{ pathname: data ? data.articles[number].url : null }} target="_blank">
+        <Link to={{ pathname: data ? data[number][6] : null }} target="_blank">
           <Button variant="primary">Read More</Button>
         </Link>
       </Card.Body>

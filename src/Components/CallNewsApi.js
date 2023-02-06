@@ -4,12 +4,6 @@ import ShowNews from './ShowNews';
 import { useAuth0 } from '@auth0/auth0-react';
 import apiKey from './local_settings.js';
 
-
-// Create axios instance with default URL for API request
-const client = axios.create({
-    baseURL: `https://newsapi.org/v2/top-headlines?country=us&apiKey=${apiKey}` 
-});
-
 const CallNewsApi = () => {
     // State to hold API response data
     const [data, setData] = useState(false);
@@ -50,12 +44,7 @@ const CallNewsApi = () => {
       getUserCategory()
       if(category){
           // API endpoint based on user's preferred category
-          if (category === 'Any'){
-            var targetURI = `https://newsapi.org/v2/top-headlines?country=us&apiKey=${apiKey}`
-          }
-          else{
-            var targetURI = `https://newsapi.org/v2/top-headlines?country=us&apiKey=${apiKey}&category=${category}`
-          }
+          var targetURI = `http://localhost:8000/api/get_articles{}?category=${category}`
           axios
               .get(targetURI)
               .then((response) => response.data)
@@ -73,7 +62,7 @@ const CallNewsApi = () => {
 
         
     // Return null while authentication state is still loading
-    if(isLoading){
+    if(isLoading || !data){
       return(null)
     }
 
