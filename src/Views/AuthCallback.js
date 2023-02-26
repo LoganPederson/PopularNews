@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { useAuth0 } from '@auth0/auth0-react'
-import { Button, Card, Container, Nav, Dropdown} from 'react-bootstrap';
+import { Button, Card, Container, Nav, Dropdown, Modal} from 'react-bootstrap';
 import NavBar from '../Components/NavBar'
 import UserSettings from '../Components/UserSettings';
 import { Redirect, useHistory } from 'react-router-dom';
 import axios from 'axios';
+import '../App.css';
 
 function AuthCallback() {
     const { loginWithRedirect } = useAuth0();
@@ -14,7 +15,9 @@ function AuthCallback() {
     const history = useHistory();
     const [dropdown_selection, setDropdownSelection] = useState('')
     const [category, setCategory] = useState(false)
-
+    const [show, setShow] = useState(false)
+    const handleClose=()=> {setShow(false)}
+    const handleOpen=()=>{setShow(true)}
 
     useEffect(async () =>{
         if(!isLoading && isAuthenticated){
@@ -44,6 +47,7 @@ function AuthCallback() {
             let targetURI = `http://localhost:8000/api/user_category{}?email=${user.email}&category=${dropdown_selection}`
             let res = await axios.post(targetURI)
             let arr = res.data;
+            handleOpen()
             return (arr)
             
         } catch(e) {
@@ -57,12 +61,13 @@ function AuthCallback() {
     };
     // If Auth0 not done loading, display placeholder
     if (isLoading) {
-        return <div>Loading ...</div>;
+        return <div id='loading_div'>Loading ...</div>;
     }
 
     if(isAuthenticated){
         return(
             <>
+            <header id='header_row'>
             <UserSettings />
             <NavBar/>
             <div className='container'>
@@ -96,12 +101,25 @@ function AuthCallback() {
             </label>
             </div>
             </div>
-            <Button variant='primary' style={{marginTop:20, width:'100%'}} onClick={handleClick}>Save</Button>
+            <Button variant='primary' style={{marginTop:20, width:'100%'}} onClick={handleClick} data-toggle="modal" >Save</Button>
             </Card.Body>
           </Card>
           </div>
           </div>
           </div>
+          </header>
+
+            <Modal show={show} onHide={handleClose}>
+                <Modal.Header closeButton>
+                    <Modal.Title>Save Preferences</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>Your changes have been saved!</Modal.Body>
+                <Modal.Footer>
+                    <Button variant="primary" onClick={handleClose}>
+                        Ok
+                    </Button>
+                </Modal.Footer>
+            </Modal>
           </>
         )
     }
@@ -112,6 +130,7 @@ function AuthCallback() {
     return(
         <>
         <NavBar />
+        <header id='header_row'>
         <div className='container'>
             <div className='row'>
                 <div className='col-sm-12' id='not_logged_in_div'>
@@ -120,6 +139,7 @@ function AuthCallback() {
                 </div>
             </div>
         </div>
+        </header>
         </>
     );
 };

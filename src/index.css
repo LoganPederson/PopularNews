@@ -7,9 +7,19 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+html{
+  background-color: dimgray;
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+#loading_div{
+  text-align: center;
+  background-color: dimgray;
+  color: white;
 }
 
 #title_div{
@@ -47,7 +57,7 @@ code {
 }
 #card_col{
   text-align: center;
-  margin-top: 50px;
+  margin-top: 0px;
   margin-left: auto;
   margin-right: auto;
 
@@ -73,4 +83,11 @@ code {
   width: 100%;
   height: 15vw;
   object-fit: cover;
+}
+#about_h1{
+  font-family: Arial, sans-serif;
+}
+#navbar_top_div_spacer{
+  height: 50px;
+  background-color: dimgray;
 }

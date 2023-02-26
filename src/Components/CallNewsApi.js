@@ -7,7 +7,6 @@ import apiKey from './local_settings.js';
 const CallNewsApi = () => {
     // State to hold API response data
     const [data, setData] = useState(false);
-
     // State to hold user's preferred news category
     const [category, setCategory] = useState(false)
 
@@ -17,29 +16,31 @@ const CallNewsApi = () => {
     const { isLoading } = useAuth0();
 
     // Function to retrieve user's preferred category from API
-    const getUserCategory = async () => {
-      if(isAuthenticated){
-        try {
-            // API endpoint for user data based on email
-            let targetURI = `http://localhost:8000/api/user{}?email=${user.email}`
-            let res = await axios.get(targetURI)
-            let arr = res.data;
-            console.log(arr+' arr')
-            setCategory(arr[0][5]) // cooresponds to category
-            return (arr)
-            
-        } catch(e) {
-            console.log(e)
-        }
-      }
-      else{
-        setCategory('Any')
-      }
-    }
+    
 
     // Effect hook to handle API request and set data state
     useEffect(() => {
     if(!isLoading){
+      const getUserCategory = async () => {
+        if(isAuthenticated){
+          try {
+              // API endpoint for user data based on email
+              let targetURI = `http://localhost:8000/api/user{}?email=${user.email}`
+              let res = await axios.get(targetURI)
+              let arr = res.data;
+              console.log(arr+' arr')
+              setCategory(arr[0][5]) // cooresponds to category
+  
+              return (arr)
+              
+          } catch(e) {
+              console.log(e)
+          }
+        }
+        else{
+          setCategory('general')
+        }
+      }
       // Retrieve user's preferred category
       getUserCategory()
       if(category){
@@ -78,12 +79,25 @@ const CallNewsApi = () => {
           <ShowNews data={data} number={1}/>
           <ShowNews data={data} number={2}/>
           <ShowNews data={data} number={3}/>
-          </div>
-          <div className='col-sm-3' id='card_col'>
-          <ShowNews data={data} number={4}/>
+          <ShowNews data={data} number={4}/>   
           <ShowNews data={data} number={5}/>
           <ShowNews data={data} number={6}/>
           <ShowNews data={data} number={7}/>
+          <ShowNews data={data} number={8}/>   
+          <ShowNews data={data} number={9}/>
+          </div>
+          <div className='col-sm-3' id='card_col'>
+          <ShowNews data={data} number={10}/>
+          <ShowNews data={data} number={11}/>
+          <ShowNews data={data} number={12}/>
+          <ShowNews data={data} number={13}/>
+          <ShowNews data={data} number={14}/>
+          <ShowNews data={data} number={15}/>
+          <ShowNews data={data} number={16}/>
+          <ShowNews data={data} number={17}/>
+          <ShowNews data={data} number={18}/>
+          <ShowNews data={data} number={19}/>
+
           </div>
           <div className='col-sm-3'/>
           </div>

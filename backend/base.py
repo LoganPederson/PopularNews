@@ -18,11 +18,17 @@ conn = psycopg2.connect(f"dbname={dbname} user={user} password={password} host={
 
 
 
-cur = conn.cursor()
+
 
 # cur.execute("""
-#     ALTER TABLE users
-#     ADD COLUMN category TEXT;
+#     INSERT INTO users (first_name, category)
+#     VALUES ('0', 'count')
+
+
+# """)
+
+# cur.execute("""
+#     DELETE FROM users
 # """)
 
 

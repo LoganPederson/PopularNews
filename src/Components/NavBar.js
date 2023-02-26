@@ -13,24 +13,23 @@ function NavBarComponent() {
     const { isLoading } = useAuth0();
 
     if (isLoading) {
-        return <div>Loading ...</div>;
+        return <div id='loading_div'>Loading ...</div>;
       }
     
 
     return(
-    <Navbar bg="primary" expand="lg">
+    <>
+    <Navbar bg="primary" expand="lg" id='navbar_top'>
     <Container>
         <Navbar.Brand href="/">Popular News</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="me-auto">
             <Nav.Link href="/">Home</Nav.Link>
-            <Nav.Link href="/navigation">About</Nav.Link>
+            <Nav.Link href="/about">About</Nav.Link>
             <NavDropdown title="My Account" id="basic-nav-dropdown">
                 {isAuthenticated ?     
             <><NavDropdown.Item href="/authcallback">My Profile</NavDropdown.Item>
-            <NavDropdown.Item href="#action/3.2">Settings</NavDropdown.Item>
-            <NavDropdown.Item href="#action/3.3">Stuff</NavDropdown.Item><NavDropdown.Divider />
             <NavDropdown.Item href="#action/3.4" onClick={()=> logout()} >Logout</NavDropdown.Item></>
             : 
             <>
@@ -41,9 +40,8 @@ function NavBarComponent() {
         </Nav>
         </Navbar.Collapse>
     </Container>
-    
     </Navbar>
-    
+    </>
     )
 }
 

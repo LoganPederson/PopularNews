@@ -9,17 +9,24 @@ import RandomImgCard from '../Components/RandomImgCard';
 import CallNewsApi from '../Components/CallNewsApi';
 import ShowNews from '../Components/ShowNews';
 import UserSettings from '../Components/UserSettings'
-import Navigation from '../Views/Navigation';
+import Navigation from './About';
 import NavBarComponent from '../Components/NavBar';
+import AddViewCount from '../Components/AddViewCount';
 import { BrowserRouter, Route, Switch, Router } from 'react-router-dom';
+
+
+
+
+
 function Main() {
+
   return (
     <header>
     <UserSettings/>
     <NavBarComponent/>
-    <CallNewsApi 
-      
-    />
+    <div id="navbar_top_div_spacer"></div>
+    <CallNewsApi/>
+    <AddViewCount/>
     </header>
 
   );
