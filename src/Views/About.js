@@ -80,7 +80,7 @@ function Navigation() {
     if(!isLoading)
       try {
           // API endpoint for user data based on email
-          let targetURI = `http://localhost:8000/api/get_visit_count{}`
+          let targetURI = `https://popularnews.org/api/get_visit_count{}`
           let res = await axios.get(targetURI)
           let arr = res.data;
           setVisitorCount(arr) // cooresponds to category
