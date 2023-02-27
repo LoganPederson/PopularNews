@@ -56,7 +56,7 @@ function Navigation() {
 
   function handleIntersect(entries, observer) {
     entries.forEach((entry) => {
-      if (window.innerWidth > 400){
+      if (window.innerWidth > 1000){
         if (entry.intersectionRatio > 0.7) {
           textElement.current.style.fontSize = '60px'
         } else {
