@@ -119,7 +119,7 @@ function Navigation() {
         </Col>
         <Col ></Col>
       </Row>
-      <Row ref={boxElement} style={{padding:0, margin: 0, height: "auto", backgroundColor: '#0d6efd'}}>
+      <Row ref={boxElement} style={{padding:0, margin: 0, height: "auto", minHeight: "75vh", backgroundColor: '#0d6efd'}}>
         <Col></Col>
         <Col md={{span: 6, offset: 3}} id='about_section_2' style={{backgroundColor: '#0d6efd', padding: 15, margin: 0, textAlign: 'center'}} className = "my-auto">
           <h1 id='fresh_h1' ref={textElement} style={{textAlign:'center', color: "black"}}>
@@ -169,7 +169,7 @@ function Navigation() {
 
 
 
-      <Row style={{padding:0, margin: 0, height: "auto", backgroundColor: '#4DD0E1'}}>
+      <Row style={{padding:0, margin: 0, height: "auto",minHeight: "75vh", backgroundColor: '#4DD0E1'}}>
         <Col></Col>
         <Col md={{span: 6, offset: 3}} id='about_section_3' style={{backgroundColor: '#4DD0E1', padding: 15, margin: 0, textAlign: 'center'}} className = "my-auto">
           <h1 id='about_h1' style={{textAlign:'center', color: "black"}}>
