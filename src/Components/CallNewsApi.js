@@ -25,7 +25,7 @@ const CallNewsApi = () => {
         if(isAuthenticated){
           try {
               // API endpoint for user data based on email
-              let targetURI = `http://localhost:8000/api/user{}?email=${user.email}`
+              let targetURI = `https://popularnews.org/api/user{}?email=${user.email}`
               let res = await axios.get(targetURI)
               let arr = res.data;
               console.log(arr+' arr')
@@ -45,7 +45,7 @@ const CallNewsApi = () => {
       getUserCategory()
       if(category){
           // API endpoint based on user's preferred category
-          var targetURI = `http://localhost:8000/api/get_articles{}?category=${category}`
+          var targetURI = `https://popularnews.org/api/get_articles{}?category=${category}`
           axios
               .get(targetURI)
               .then((response) => response.data)

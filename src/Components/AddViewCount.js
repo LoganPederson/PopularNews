@@ -11,7 +11,7 @@ function AddViewCount() {
     const [done, setDone] = useState(false)
     const addViewCount = async()=>{
         try{
-            let targetURI = `http://localhost:8000/api/add_visit_count{}`
+            let targetURI = `https://popularnews.org/api/add_visit_count{}`
             let res = await axios.post(targetURI);
             let arr = res.data;
             
