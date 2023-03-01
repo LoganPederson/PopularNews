@@ -33,7 +33,7 @@ function Navigation() {
   
     let options = {
       root: null,
-      rootMargin: "0px",
+      rootMargin: "10px",
       threshold: buildThresholdList()
     };
   
@@ -57,10 +57,12 @@ function Navigation() {
   function handleIntersect(entries, observer) {
     entries.forEach((entry) => {
       if (window.innerWidth > 1000){
-        if (entry.intersectionRatio > 0.7) {
+        if (entry.intersectionRatio >= 0.95) {
           textElement.current.style.fontSize = '60px'
-        } else {
+          console.log(entry.intersectionRatio)
+        } else if(entry.intersectionRatio <= 0.75) { // else if is needed as the resize due to font change will trigger the else statement as the % in view changes 
           textElement.current.style.fontSize = '32px'
+          console.log(entry.intersectionRatio)
         }
       }
       prevRatio = entry.intersectionRatio;
@@ -106,7 +108,7 @@ function Navigation() {
     <>
     <NavBarComponent />
     <Container fluid style={{padding:0, margin: 0, width: '100%'}}>
-      <Row style={{padding:0, margin: 0, height: "60vh", backgroundColor: '#4DD0E1'}} >
+      <Row style={{padding:0, margin: 0, height: "auto", minHeight: "60vh", backgroundColor: '#4DD0E1'}} >
         <Col></Col>
         <Col md={{span: 6, offset: 3}} id='about_section_1' style={{backgroundColor: '#4DD0E1', padding: 15, margin: 0, textAlign: 'center'}} className = "my-auto">
           <h1 id='about_h1' style={{textAlign:'center', color: "black"}}>
@@ -121,9 +123,9 @@ function Navigation() {
         </Col>
         <Col ></Col>
       </Row>
-      <Row ref={boxElement} style={{padding:0, margin: 0, height: "100vh", backgroundColor: '#0d6efd'}}>
+      <Row ref={boxElement} style={{padding:0, margin: 0, height: "auto", backgroundColor: '#0d6efd'}}>
         <Col></Col>
-        <Col md={{span: 6, offset: 3}} id='about_section_1' style={{backgroundColor: '#0d6efd', padding: 15, margin: 0, textAlign: 'center'}} className = "my-auto">
+        <Col md={{span: 6, offset: 3}} id='about_section_2' style={{backgroundColor: '#0d6efd', padding: 15, margin: 0, textAlign: 'center'}} className = "my-auto">
           <h1 id='fresh_h1' ref={textElement} style={{textAlign:'center', color: "black"}}>
             A Fresh Take on News  
           </h1>
@@ -171,9 +173,9 @@ function Navigation() {
 
 
 
-      <Row style={{padding:0, margin: 0, height: "100vh", backgroundColor: '#4DD0E1'}}>
+      <Row style={{padding:0, margin: 0, height: "auto", backgroundColor: '#4DD0E1'}}>
         <Col></Col>
-        <Col md={{span: 6, offset: 3}} id='about_section_1' style={{backgroundColor: '#4DD0E1', padding: 15, margin: 0, textAlign: 'center'}} className = "my-auto">
+        <Col md={{span: 6, offset: 3}} id='about_section_3' style={{backgroundColor: '#4DD0E1', padding: 15, margin: 0, textAlign: 'center'}} className = "my-auto">
           <h1 id='about_h1' style={{textAlign:'center', color: "black"}}>
             Support This Site  
           </h1>
