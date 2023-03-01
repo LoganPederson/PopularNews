@@ -59,17 +59,13 @@ function Navigation() {
       if (window.innerWidth > 1000){
         if (entry.intersectionRatio >= 0.95) {
           textElement.current.style.fontSize = '60px'
-          console.log(entry.intersectionRatio)
         } else if(entry.intersectionRatio <= 0.75) { // else if is needed as the resize due to font change will trigger the else statement as the % in view changes 
           textElement.current.style.fontSize = '32px'
-          console.log(entry.intersectionRatio)
         }
       }
       prevRatio = entry.intersectionRatio;
     });
   }
-
-
 
   useEffect(async ()=>{
     if (boxElement.current){
