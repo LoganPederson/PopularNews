@@ -10,6 +10,8 @@
 
 # production
 /build
+/update.sh
+./update.sh
 
 # misc
 .DS_Store
