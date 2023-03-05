@@ -64,13 +64,15 @@ function AuthCallback() {
         return <div id='loading_div'>Loading ...</div>;
     }
 
+    // Currently using bootsrap continaer/row/column, need to convert to ReactBootstrap to match rest of the site!
     if(isAuthenticated){
         return(
             <>
             <header id='header_row'>
             <UserSettings />
             <NavBar/>
-            <div className='container'>
+            <div id="navbar_top_div_spacer"></div>
+            <div className='container'> 
             <div className='row'>
             <div className='col-sm-3' id='card_col'>
             <Card className="mb-3" style={{color: "#000"}} id='user_card'>
