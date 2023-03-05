@@ -55,11 +55,10 @@ async def add_user(email:str):
 @app.post("/api/user_category{}")
 async def set_category(email:str, category:str):
     with conn.cursor() as cur:
-        category_lower = category.lower()
         cur.execute(f"""
             UPDATE users
             SET
-                category = '{category_lower}'
+                category = '{category}'
             WHERE
                 email = '{email}';
         """)

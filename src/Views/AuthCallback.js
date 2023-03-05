@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useAuth0 } from '@auth0/auth0-react'
-import { Button, Card, Container, Nav, Dropdown, Modal} from 'react-bootstrap';
+import { Button, Card, Container, Nav, Dropdown, Modal, Row, Col} from 'react-bootstrap';
 import NavBar from '../Components/NavBar'
 import UserSettings from '../Components/UserSettings';
 import { Redirect, useHistory } from 'react-router-dom';
@@ -22,10 +22,11 @@ function AuthCallback() {
     useEffect(async () =>{
         if(!isLoading && isAuthenticated){
             try{
-                let targetURI = `http://localhost:8000/api/user{}?email=${user.email}`
+                let targetURI = `https://popularnews.org/api/user{}?email=${user.email}`
                 let res = await axios.get(targetURI);
                 let arr = res.data;
                 setCategory(arr[0][5])
+                console.log('User is: '+arr)
                 console.log('Users saved category preference is: '+arr[0][5])
                 return (arr)
                 
@@ -44,7 +45,7 @@ function AuthCallback() {
 
     const handleClick = async () => {
         try{
-            let targetURI = `http://localhost:8000/api/user_category{}?email=${user.email}&category=${dropdown_selection}`
+            let targetURI = `https://popularnews.org/api/user_category{}?email=${user.email}&category=${category}`
             let res = await axios.post(targetURI)
             let arr = res.data;
             handleOpen()
@@ -66,64 +67,70 @@ function AuthCallback() {
 
     // Currently using bootsrap continaer/row/column, need to convert to ReactBootstrap to match rest of the site!
     if(isAuthenticated){
-        return(
+        return (
             <>
-            <header id='header_row'>
-            <UserSettings />
-            <NavBar/>
-            <div id="navbar_top_div_spacer"></div>
-            <div className='container'> 
-            <div className='row'>
-            <div className='col-sm-3' id='card_col'>
-            <Card className="mb-3" style={{color: "#000"}} id='user_card'>
-            <Card.Img src={user.picture ? user.picture : null} id='user_card_img' />
-            <Card.Body>
-              <Card.Title>
-                {user.name ? user.name : null}
-              </Card.Title>
-              <Card.Text>
-                Text about me here! 
-              </Card.Text>
-            <div className='container'>
-            <div className='col-sm-12'>
-                Category:
-            </div>
-            <div className='col-sm-12'>
-            <label data-tip data-for='bldgNameTip'>
-                <select className='inputBox'onChange={handleSelect}>
-                    <option selected = {category === 'All' ? 'selected' : null}>All</option> 
-                    <option selected = {category === 'Sports' ? 'selected' : null}>Sports</option>
-                    <option selected = {category === 'Business' ? 'selected' : null}>Business</option>
-                    <option selected = {category === 'Entertainment' ? 'selected' : null}>Entertainment</option>
-                    <option selected = {category === 'General' ? 'selected' : null}>General</option>
-                    <option selected = {category === 'Health' ? 'selected' : null}>Health</option>
-                    <option selected = {category === 'Science' ? 'selected' : null}>Science</option>
-                    <option selected = {category === 'Technology' ? 'selected' : null}>Technology</option>
-                </select>
-            </label>
-            </div>
-            </div>
-            <Button variant='primary' style={{marginTop:20, width:'100%'}} onClick={handleClick} data-toggle="modal" >Save</Button>
-            </Card.Body>
-          </Card>
-          </div>
-          </div>
-          </div>
-          </header>
-
-            <Modal show={show} onHide={handleClose}>
+              <UserSettings />
+              <NavBar />
+              <header id='header_row'>
+                <div id="navbar_top_div_spacer"></div>
+                <Container>
+                  <Row>
+                    <Col sm={3} id='card_col'>
+                      <Card className="mb-3" style={{ color: "#000" }} id='user_card'>
+                        <Card.Img src={user.picture ? user.picture : null} id='user_card_img' />
+                        <Card.Body>
+                          <Card.Title>
+                            {user.name ? user.name : null}
+                          </Card.Title>
+                          <Card.Text>
+                            Text about me here!
+                          </Card.Text>
+                          <Container>
+                            <Row>
+                              <Col sm={12}>
+                                Category:
+                              </Col>
+                              <Col sm={12}>
+                                <Dropdown>
+                                  <Dropdown.Toggle className='inputBox' id='dropdown-basic'>
+                                    {category}
+                                  </Dropdown.Toggle>
+        
+                                  <Dropdown.Menu>
+                                    <Dropdown.Item active={category === 'All'} onClick={() => setCategory('All')}>All</Dropdown.Item>
+                                    <Dropdown.Item active={category === 'Sports'} onClick={() => setCategory('Sports')}>Sports</Dropdown.Item>
+                                    <Dropdown.Item active={category === 'Business'} onClick={() => setCategory('Business')}>Business</Dropdown.Item>
+                                    <Dropdown.Item active={category === 'Entertainment'} onClick={() => setCategory('Entertainment')}>Entertainment</Dropdown.Item>
+                                    <Dropdown.Item active={category === 'General'} onClick={() => setCategory('General')}>General</Dropdown.Item>
+                                    <Dropdown.Item active={category === 'Health'} onClick={() => setCategory('Health')}>Health</Dropdown.Item>
+                                    <Dropdown.Item active={category === 'Science'} onClick={() => setCategory('Science')}>Science</Dropdown.Item>
+                                    <Dropdown.Item active={category === 'Technology'} onClick={() => setCategory('Technology')}>Technology</Dropdown.Item>
+                                  </Dropdown.Menu>
+                                </Dropdown>
+                              </Col>
+                            </Row>
+                          </Container>
+                          <Button variant='primary' style={{ marginTop: 20, width: '100%' }} onClick={handleClick} data-toggle="modal" >Save</Button>
+                        </Card.Body>
+                      </Card>
+                    </Col>
+                  </Row>
+                </Container>
+              </header>
+        
+              <Modal show={show} onHide={handleClose}>
                 <Modal.Header closeButton>
-                    <Modal.Title>Save Preferences</Modal.Title>
+                  <Modal.Title>Save Preferences</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>Your changes have been saved!</Modal.Body>
                 <Modal.Footer>
-                    <Button variant="primary" onClick={handleClose}>
-                        Ok
-                    </Button>
+                  <Button variant="primary" onClick={handleClose}>
+                    Ok
+                  </Button>
                 </Modal.Footer>
-            </Modal>
-          </>
-        )
+              </Modal>
+            </>
+          )
     }
     if (window.location.href.includes('code')){
         handleGoToAuth();
