@@ -36,7 +36,10 @@ function NavBarComponent() {
 
             <NavDropdown title="My Account" id="basic-nav-dropdown">
                 {isAuthenticated ?     
-            <><NavDropdown.Item to="/authcallback">My Profile</NavDropdown.Item>
+            <>
+            <LinkContainer to='/authcallback'>
+                <NavDropdown.Item to="/authcallback">My Profile</NavDropdown.Item>
+            </LinkContainer>
             <NavDropdown.Item to="#action/3.4" onClick={()=> logout()} >Logout</NavDropdown.Item></>
             : 
             <>
