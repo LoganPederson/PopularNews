@@ -26,8 +26,7 @@ function Navigation() {
   let boxElement = useRef(null);
   let textElement = useRef(null);
 
-  // Set things up for Intersection Observer API
-
+  // Setup for Intersection Observer API
   function createObserver() {
     let observer;
   
@@ -41,6 +40,7 @@ function Navigation() {
     observer.observe(boxElement.current);
   }
 
+  // Likely not needed since we don't incremenet anything based on the threshold values
   function buildThresholdList() {
     let thresholds = [];
     let numSteps = 20;
@@ -53,7 +53,15 @@ function Navigation() {
     thresholds.push(0);
     return thresholds;
   }
+  
 
+  /*
+  Intersection observer API checks to see how much of the element is intersecting the viewport -
+  Changing rootMargin above indicates how often it will check, currently 10px change in screen 
+  required before checking again.
+
+  Change font size based on element in view:
+  */
   function handleIntersect(entries, observer) {
     entries.forEach((entry) => {
       if (window.innerWidth > 1000){
@@ -69,11 +77,12 @@ function Navigation() {
 
   useEffect(async ()=>{
     if (boxElement.current){
-    console.log(boxElement.current)
-    createObserver();
+    //console.log(boxElement.current)
+      createObserver();
     }
   })
 
+  // Get Visitor Count
   useEffect(async () => {
     if(!isLoading)
       try {
