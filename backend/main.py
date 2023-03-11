@@ -68,7 +68,7 @@ async def set_category(email:str, category:str):
 @app.get("/api/get_articles{}")
 async def get_articles(category:str):
     with conn.cursor() as cur:
-        if category == 'Any HTTP/1.1' or category == 'Any':
+        if category == 'All HTTP/1.1' or category == 'All':
             category_lower = 'general'
         else:
             category_lower = category.lower()

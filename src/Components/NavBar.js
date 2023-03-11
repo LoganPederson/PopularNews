@@ -44,7 +44,7 @@ function NavBarComponent() {
             : 
             <>
             <NavDropdown.Item to="#action/3.1" onClick={()=> loginWithRedirect()}>Login</NavDropdown.Item>
-            <NavDropdown.Item to="#action/3.1">Create An Account</NavDropdown.Item></>}
+            <NavDropdown.Item to="#action/3.1" onClick={()=> loginWithRedirect()}>Create An Account</NavDropdown.Item></>}
             
             </NavDropdown>
         </Nav>
