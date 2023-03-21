@@ -19,7 +19,7 @@ function NavBarComponent() {
 
     return(
     <>
-    <Navbar bg="primary" expand="lg" id='navbar_top'>
+    <Navbar bg="primary" expand="lg" id='navbar_top' style={{paddingBottom:0}}>
     <Container>
         <LinkContainer to="/">
         <Navbar.Brand to="/">Popular News</Navbar.Brand>

@@ -93,7 +93,7 @@ function AuthCallback() {
                               <Col sm={12}>
                                 <Dropdown>
                                   <Dropdown.Toggle className='inputBox' id='dropdown-basic'>
-                                    {category}
+                                    
                                   </Dropdown.Toggle>
         
                                   <Dropdown.Menu>
